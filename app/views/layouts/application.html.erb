@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>MyCafe</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>CafeApp</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
 
-  <body>
-    <%= yield %>
-  </body>
+  <!-- Include Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
+</head>
+
+<body>
+<%= yield %>
+</body>
 </html>

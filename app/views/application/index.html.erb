@@ -1,0 +1,40 @@
+<header>
+  <h1>Welcome to Our Cozy Cafe</h1>
+</header>
+
+<div class="container">
+  <h1>Menu</h1>
+  <div class="tabs">
+    <ul class="tab-links">
+      <% @categories.each_with_index do |category, index| %>
+        <li class="<%= 'active' if index == 0 %>">
+          <a href="#<%= category.id %>"><%= category.name %></a>
+        </li>
+      <% end %>
+    </ul>
+
+    <div class="tab-content">
+      <% @categories.each_with_index do |category, index| %>
+        <div id="<%= category.id %>" class="tab <%= 'active' if index == 0 %>">
+          <ul>
+            <% category.menus.each do |menu| %>
+              <li>
+                <div>
+                  <strong><%= menu.name %></strong>: <%= menu.description %>
+                </div>
+                <div>
+                  <%= number_to_currency(menu.price) %>
+                  <% if menu.availability %>
+                    <span class="available">(Available)</span>
+                  <% else %>
+                    <span class="not-available">(Not Available)</span>
+                  <% end %>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

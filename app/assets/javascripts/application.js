@@ -1,3 +1,6 @@
+//= require rails-ujs
+//= require_tree .
+
 document.addEventListener('DOMContentLoaded', () => {
     const tabLinks = document.querySelectorAll('.tab-links a');
     const tabs = document.querySelectorAll('.tab');
