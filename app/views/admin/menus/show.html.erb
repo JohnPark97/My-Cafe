@@ -2,8 +2,8 @@
 <p><%= @menu.description %></p>
 <p>Price: <%= number_to_currency(@menu.price) %></p>
 <p>Availability: <%= @menu.availability ? 'Available' : 'Not Available' %></p>
-<% if @menu.image_url.present? %>
-  <p><img src="<%= @menu.image_url %>" alt="<%= @menu.name %>" style="max-width: 300px; max-height: 300px;"></p>
+<% if @signed_url.present? %>
+  <p><img src="<%= @signed_url %>" alt="<%= @menu.name %>" style="max-width: 300px; max-height: 300px;"></p>
 <% else %>
   <p>No image available</p>
 <% end %>

@@ -47,15 +47,26 @@
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.4, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v2.5.10, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="capybara (v3.40.0, rbenv: 3.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="carrierwave (v3.0.7, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.2.3, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="connection_pool (v2.4.1, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="crass (v1.0.6, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="debug (v1.9.2, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="devise (v4.9.4, rbenv: 3.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="dotenv (v3.1.2, rbenv: 3.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="dotenv-rails (v3.1.2, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="drb (v2.2.1, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubi (v1.12.0, rbenv: 3.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="excon (v0.110.0, rbenv: 3.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ffi (v1.16.3, rbenv: 3.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="fog-aws (v3.22.0, rbenv: 3.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="fog-core (v2.4.0, rbenv: 3.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="fog-json (v1.2.0, rbenv: 3.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="fog-xml (v0.1.4, rbenv: 3.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="formatador (v1.1.0, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v1.2.1, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v1.14.5, rbenv: 3.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="image_processing (v1.12.2, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="importmap (v0.1.0, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="io-console (v0.7.2, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="irb (v1.13.1, rbenv: 3.3.1) [gem]" level="application" />
@@ -66,9 +77,13 @@
     <orderEntry type="library" scope="PROVIDED" name="marcel (v1.0.4, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="matrix (v0.4.2, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="memoist (v0.16.2, rbenv: 3.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mime-types (v3.5.2, rbenv: 3.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mime-types-data (v3.2024.0507, rbenv: 3.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mini_magick (v4.12.0, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mini_mime (v1.1.5, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="minitest (v5.23.1, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="msgpack (v1.7.2, rbenv: 3.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.15.0, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-imap (v0.4.11, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-pop (v0.1.2, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-smtp (v0.5.0, rbenv: 3.3.1) [gem]" level="application" />
@@ -94,11 +109,13 @@
     <orderEntry type="library" scope="PROVIDED" name="reline (v0.5.7, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="responders (v3.1.1, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rexml (v3.2.8, rbenv: 3.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ruby-vips (v2.2.1, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubyzip (v2.3.2, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="selenium-webdriver (v4.21.1, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets (v4.2.1, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets-rails (v3.4.2, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sqlite3 (v1.7.3, rbenv: 3.3.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ssrf_filter (v1.1.2, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="stimulus-rails (v1.3.3, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="strscan (v3.1.0, rbenv: 3.3.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v1.3.1, rbenv: 3.3.1) [gem]" level="application" />

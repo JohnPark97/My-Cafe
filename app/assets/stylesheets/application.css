@@ -2,7 +2,7 @@
 /*
 *= require_self
 *= require_tree .
-   */
+*/
 
 body {
     font-family: 'Open Sans', sans-serif;
@@ -64,12 +64,24 @@ li {
     padding: 10px;
     margin: 10px 0;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
-li strong {
-    font-size: 1.2em;
+.menu-item {
+    display: flex;
+    align-items: center;
+}
+
+.menu-image {
+    max-width: 100px;
+    max-height: 100px;
+    margin-right: 10px;
+    border-radius: 8px;
+}
+
+.menu-details {
+    display: flex;
+    flex-direction: column;
 }
 
 .available {

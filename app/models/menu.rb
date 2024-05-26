@@ -1,7 +1,15 @@
 class Menu < ApplicationRecord
   belongs_to :category
 
-  validates :name, :description, :price, :category, presence: true
-  validates :price, numericality: { greater_than_or_equal_to: 0 }
-  # validates :image_url, url: true, allow_blank: true
+  mount_uploader :image_url, ImageUploader
+
+  validates :name, :description, :price, :category_id, presence: true
+
+  private
+
+  def update_image_url
+    if image_url.present? && image_url_changed?
+      self.image_url = image_url.url
+    end
+  end
 end

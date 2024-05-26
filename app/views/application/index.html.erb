@@ -19,16 +19,21 @@
           <ul>
             <% category.menus.each do |menu| %>
               <li>
-                <div>
-                  <strong><%= menu.name %></strong>: <%= menu.description %>
-                </div>
-                <div>
-                  <%= number_to_currency(menu.price) %>
-                  <% if menu.availability %>
-                    <span class="available">(Available)</span>
-                  <% else %>
-                    <span class="not-available">(Not Available)</span>
+                <div class="menu-item">
+                  <% if @signed_urls[menu.id].present? %>
+                    <img src="<%= @signed_urls[menu.id] %>" alt="<%= menu.name %>" class="menu-image">
                   <% end %>
+                  <div class="menu-details">
+                    <strong><%= menu.name %></strong>: <%= menu.description %>
+                    <div>
+                      <%= number_to_currency(menu.price) %>
+                      <% if menu.availability %>
+                        <span class="available">(Available)</span>
+                      <% else %>
+                        <span class="not-available">(Not Available)</span>
+                      <% end %>
+                    </div>
+                  </div>
                 </div>
               </li>
             <% end %>

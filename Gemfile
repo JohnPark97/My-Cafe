@@ -69,3 +69,9 @@ end
 gem "importmap", "~> 0.1.0"
 
 gem "devise", "~> 4.9"
+
+gem "carrierwave", "~> 3.0"
+
+gem "fog-aws", "~> 3.22"
+
+gem "dotenv-rails", "~> 3.1"
