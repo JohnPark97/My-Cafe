@@ -5,6 +5,7 @@
   <thead>
   <tr>
     <th>Name</th>
+    <th>Category</th>
     <th>Description</th>
     <th>Price</th>
     <th>Availability</th>
@@ -16,6 +17,8 @@
   <% @menus.each do |menu| %>
     <tr>
       <td><%= menu.name %></td>
+<!--      asdf link to the corresponding category-->
+      <td><%= link_to menu.category.name, admin_category_path(menu.category) %></td>
       <td><%= menu.description %></td>
       <td><%= number_to_currency(menu.price) %></td>
       <td><%= menu.availability ? 'Available' : 'Not Available' %></td>

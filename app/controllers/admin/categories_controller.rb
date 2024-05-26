@@ -1,4 +1,6 @@
 class Admin::CategoriesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :admin_only
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -6,7 +8,6 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:id])
   end
 
   def new
@@ -20,7 +21,7 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_to admin_categories_path, notice: 'Category was successfully created.'
+      redirect_to admin_dashboard_path, notice: 'Category was successfully created.'
     else
       render :new
     end
@@ -28,7 +29,7 @@ class Admin::CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      redirect_to admin_categories_path, notice: 'Category was successfully updated.'
+      redirect_to admin_dashboard_path, notice: 'Category was successfully updated.'
     else
       render :edit
     end
@@ -36,16 +37,20 @@ class Admin::CategoriesController < ApplicationController
 
   def destroy
     @category.destroy
-    redirect_to admin_categories_path, notice: 'Category was successfully destroyed.'
+    redirect_to admin_dashboard_path, notice: 'Category was successfully destroyed.'
   end
 
   private
+
+  def admin_only
+    redirect_to root_path, alert: 'Access denied.' unless current_user.admin?
+  end
 
   def set_category
     @category = Category.find(params[:id])
   end
 
   def category_params
-    params.require(:category).permit(:name, :description) # Assuming you also have description
+    params.require(:category).permit(:name, :description)
   end
 end

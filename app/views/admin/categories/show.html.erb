@@ -1,1 +1,24 @@
 <h1><%= @category.name %></h1>
+
+<h2>Menus</h2>
+<% if @category.menus.any? %>
+  <ul>
+    <% @category.menus.each do |menu| %>
+      <li>
+        <strong><%= menu.name %></strong>: <%= menu.description %>
+        <br>
+        Price: <%= number_to_currency(menu.price) %>
+        <% if menu.availability %>
+          <span class="available">(Available)</span>
+        <% else %>
+          <span class="not-available">(Not Available)</span>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No menus available for this category.</p>
+<% end %>
+
+<%= link_to 'Edit Category', edit_admin_category_path(@category) %> |
+<%= link_to 'Back to Categories', admin_categories_path %>

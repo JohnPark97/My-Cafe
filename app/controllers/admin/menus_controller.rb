@@ -1,4 +1,6 @@
 class Admin::MenusController < ApplicationController
+  before_action :authenticate_user!
+  before_action :admin_only
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -6,7 +8,6 @@ class Admin::MenusController < ApplicationController
   end
 
   def show
-    @menu = Menu.find(params[:id])
   end
 
   def new
@@ -20,7 +21,7 @@ class Admin::MenusController < ApplicationController
     @menu = Menu.new(menu_params)
 
     if @menu.save
-      redirect_to admin_menus_path, notice: 'Menu was successfully created.'
+      redirect_to admin_dashboard_path, notice: 'Menu was successfully created.'
     else
       render :new
     end
@@ -28,7 +29,7 @@ class Admin::MenusController < ApplicationController
 
   def update
     if @menu.update(menu_params)
-      redirect_to admin_menus_path, notice: 'Menu was successfully updated.'
+      redirect_to admin_dashboard_path, notice: 'Menu was successfully updated.'
     else
       render :edit
     end
@@ -36,10 +37,14 @@ class Admin::MenusController < ApplicationController
 
   def destroy
     @menu.destroy
-    redirect_to admin_menus_path, notice: 'Menu was successfully destroyed.'
+    redirect_to admin_dashboard_path, notice: 'Menu was successfully destroyed.'
   end
 
   private
+
+  def admin_only
+    redirect_to root_path, alert: 'Access denied.' unless current_user.admin?
+  end
 
   def set_menu
     @menu = Menu.find(params[:id])

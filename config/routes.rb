@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
+
   resources :category, only: [:index, :show]
   resources :menus, only: [:index, :show]
 

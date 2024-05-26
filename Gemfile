@@ -67,3 +67,5 @@ group :test do
 end
 
 gem "importmap", "~> 0.1.0"
+
+gem "devise", "~> 4.9"
