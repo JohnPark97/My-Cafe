@@ -2,7 +2,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   storage :fog
 
   def store_dir
-    "#{model.class.to_s.underscore}/#{model.category.id}"
+    "#{Rails.application.class.module_parent_name.underscore}/#{Rails.env}/#{model.class.to_s.underscore}/#{model.category.id}"
   end
 
   def extension_whitelist
