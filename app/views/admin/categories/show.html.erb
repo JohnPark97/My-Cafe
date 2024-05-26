@@ -5,7 +5,7 @@
   <ul>
     <% @category.menus.each do |menu| %>
       <li>
-        <strong><%= menu.name %></strong>: <%= menu.description %>
+        <strong><%= menu.name %></strong>:
         <br>
         Price: <%= number_to_currency(menu.price) %>
         <% if menu.availability %>
