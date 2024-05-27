@@ -29,10 +29,11 @@
       </td>
       <td><%= link_to 'Show', admin_menu_path(menu) %></td>
       <td><%= link_to 'Edit', edit_admin_menu_path(menu) %></td>
-      <td><%= link_to "Destroy", admin_menu_path(menu), data: {
-        turbo_method: :delete,
-        turbo_confirm: "Are you sure?"
-      } %></td>
+      <td>
+        <%= form_with model: [:admin, menu], method: :delete, local: true do %>
+          <%= submit_tag 'Destroy', data: { confirm: 'Are you sure you want to delete this menu?' } %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
   </tbody>

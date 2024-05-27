@@ -1,19 +1,19 @@
 /* Add this at the top if it's not already there */
 /*
-*= require_self
-*= require_tree .
+ *= require_self
+ *= require_tree .
 */
 
 body {
     font-family: 'Open Sans', sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: #f3eacb; /* Warm background color */
+    color: #5b4636; /* Warm text color */
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: #6c757d;
+    background-color: #b5651d; /* Warm brown color */
     color: white;
     padding: 20px 0;
     text-align: center;
@@ -26,7 +26,7 @@ header {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #fff7e6; /* Light warm background */
     border-radius: 12px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     opacity: 0; /* Start hidden */
@@ -37,17 +37,18 @@ header {
 h1 {
     margin: 0;
     font-size: 2.5em;
+    color: #5b4636; /* Warm text color */
 }
 
 h2 {
-    color: #495057;
-    border-bottom: 2px solid #6c757d;
+    color: #6b4f3a; /* Warm color */
+    border-bottom: 2px solid #b5651d; /* Warm brown border */
     padding-bottom: 5px;
     margin-bottom: 20px;
 }
 
 h3 {
-    color: #343a40;
+    color: #5b4636; /* Warm text color */
     margin-top: 20px;
 }
 
@@ -58,8 +59,8 @@ ul {
 }
 
 li {
-    background-color: white;
-    border: 1px solid #ced4da;
+    background-color: #fff7e6; /* Light warm background */
+    border: 1px solid #d1a684; /* Warm border color */
     border-radius: 8px;
     padding: 10px;
     margin: 10px 0;
@@ -70,6 +71,7 @@ li {
 .menu-item {
     display: flex;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .menu-image {
@@ -77,11 +79,15 @@ li {
     max-height: 100px;
     margin-right: 10px;
     border-radius: 8px;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
 }
 
 .menu-details {
     display: flex;
     flex-direction: column;
+    flex: 1;
 }
 
 .available {
@@ -93,61 +99,63 @@ li {
 }
 
 .tabs {
+    display: flex;
+    flex-direction: column;
     margin-top: 20px;
 }
 
 .tab-links {
-    list-style: none;
+    list-style-type: none;
     padding: 0;
     margin: 0 0 20px 0;
     display: flex;
+    justify-content: space-around;
+    background-color: #e8cbb2; /* Warm background color */
+    border-radius: 8px;
     border-bottom: none;
 }
 
 .tab-links li {
-    margin: 0 5px 0 0;
+    margin: 0;
 }
 
 .tab-links a {
-    padding: 10px 20px;
     display: block;
+    padding: 15px 20px;
     text-decoration: none;
-    background: #e9ecef;
-    color: #495057;
-    border-radius: 12px 12px 0 0;
+    color: #5b4636; /* Warm text color */
+    font-weight: bold;
+    border-radius: 8px 8px 0 0;
     border: none;
     transition: background 0.3s, color 0.3s;
 }
 
 .tab-links a:hover {
-    background: #ced4da;
-    color: #212529;
+    background: #d1a684; /* Warm hover color */
+    color: #ffffff;
 }
 
 .tab-links .active a {
-    background: #fff;
-    border-bottom: none;
-    color: #212529;
+    background-color: #b5651d; /* Warm brown color */
+    color: white;
     position: relative;
     top: 1px;
     z-index: 2;
 }
 
 .tab-content {
+    display: none;
     border-radius: 12px;
     border-top-left-radius: 0;
     padding: 20px;
-    background: #fff;
+    background: #fff7e6; /* Light warm background */
     margin-top: -1px;
     z-index: 1;
 }
 
-.tab-content .tab {
-    display: none;
-}
-
-.tab-content .active {
+.tab-content.active {
     display: block;
+    padding: 20px;
     animation: fadeInTab 0.5s ease-in;
 }
 

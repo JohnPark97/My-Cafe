@@ -66,8 +66,6 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "importmap", "~> 0.1.0"
-
 gem "devise", "~> 4.9"
 
 gem "carrierwave", "~> 3.0"
@@ -75,3 +73,5 @@ gem "carrierwave", "~> 3.0"
 gem "fog-aws", "~> 3.22"
 
 gem "dotenv-rails", "~> 3.1"
+
+gem "propshaft", "~> 0.9.0"

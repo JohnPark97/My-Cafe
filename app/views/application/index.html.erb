@@ -8,20 +8,20 @@
     <ul class="tab-links">
       <% @categories.each_with_index do |category, index| %>
         <li class="<%= 'active' if index == 0 %>">
-          <a href="#<%= category.id %>"><%= category.name %></a>
+          <a href="#category-<%= category.id %>"><%= category.name %></a>
         </li>
       <% end %>
     </ul>
 
-    <div class="tab-content">
+    <div class="tab-contents">
       <% @categories.each_with_index do |category, index| %>
-        <div id="<%= category.id %>" class="tab <%= 'active' if index == 0 %>">
+        <div id="category-<%= category.id %>" class="tab-content <%= 'active' if index == 0 %>">
           <ul>
             <% category.menus.each do |menu| %>
               <li>
                 <div class="menu-item">
-                  <% if @signed_urls[menu.id].present? %>
-                    <img src="<%= @signed_urls[menu.id] %>" alt="<%= menu.name %>" class="menu-image">
+                  <% if menu.image_url.present? %>
+                    <img src="<%= menu.image_url %>" alt="<%= menu.name %>" class="menu-image">
                   <% end %>
                   <div class="menu-details">
                     <strong><%= menu.name %></strong>: <%= menu.description %>

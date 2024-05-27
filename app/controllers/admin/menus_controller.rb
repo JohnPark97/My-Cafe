@@ -31,7 +31,7 @@ class Admin::MenusController < ApplicationController
 
     if @menu.save
       Rails.logger.info "Menu successfully created: #{@menu.inspect}"
-      redirect_to admin_dashboard_path, notice: 'Menu was successfully created.'
+      redirect_to admin_menus_path, notice: 'Menu was successfully created.'
     else
       Rails.logger.error "Failed to create menu: #{@menu.errors.full_messages.join(", ")}"
       render :new
@@ -55,7 +55,7 @@ class Admin::MenusController < ApplicationController
     else
       Rails.logger.error "Failed to destroy menu: #{@menu.errors.full_messages.join(", ")}"
     end
-    redirect_to admin_dashboard_path, notice: 'Menu was successfully destroyed.'
+    redirect_to admin_menus_path, notice: 'Menu was successfully destroyed.'
   end
 
   private
