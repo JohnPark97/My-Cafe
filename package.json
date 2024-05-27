@@ -7,5 +7,8 @@
   "devDependencies": {
     "webpack": "^5.36.2",
     "webpack-cli": "^4.6.0"
+  },
+  "dependencies": {
+    "@rails/ujs": "^7.0.8-3"
   }
 }

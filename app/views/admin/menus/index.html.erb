@@ -29,7 +29,10 @@
       </td>
       <td><%= link_to 'Show', admin_menu_path(menu) %></td>
       <td><%= link_to 'Edit', edit_admin_menu_path(menu) %></td>
-      <td><%= link_to 'Destroy', admin_menu_path(menu), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to "Destroy", admin_menu_path(menu), data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"
+      } %></td>
     </tr>
   <% end %>
   </tbody>
