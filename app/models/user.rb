@@ -1,9 +1,12 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  belongs_to :cafe
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   # Ensure admin flag is boolean
   attribute :admin, :boolean, default: false
+  validates :email, presence: true, uniqueness: true
+
+  has_many :orders
+  has_many :reviews
 end

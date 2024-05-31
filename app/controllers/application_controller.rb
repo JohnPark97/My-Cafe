@@ -10,11 +10,11 @@ class ApplicationController < ActionController::Base
   end
 
   def index
-    @categories = Category.includes(:menus).all
+    @categories = Category.includes(:menu_items).all
 
     @signed_urls = {}
     @categories.each do |category|
-      category.menus.each do |menu|
+      category.menu_items.each do |menu|
         if menu.image_url.present?
           @signed_urls[menu.id] = generate_signed_url(menu)
         end

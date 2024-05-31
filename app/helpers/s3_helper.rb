@@ -1,3 +1,4 @@
+# app/helpers/s3_helper.rb
 module S3Helper
   def s3_storage
     @s3_storage ||= Fog::Storage.new({
@@ -8,11 +9,16 @@ module S3Helper
                                      })
   end
 
-  def generate_signed_url(menu)
-    Rails.logger.info "Generating signed URL for menu: #{menu.inspect}"
+  def generate_signed_url(menu_item)
+    Rails.logger.info "Generating signed URL for menu_item: #{menu_item.inspect}"
     directory = s3_storage.directories.get(ENV['AWS_S3_BUCKET'])
-    file_path = "#{Rails.application.class.module_parent_name.underscore}/#{Rails.env}/#{menu.class.to_s.underscore}/#{menu.category.id}/#{menu.image_url.file.filename}"
+
+    # Extract filename from the image_url uploader
+    filename = File.basename(menu_item.image_url.url)
+
+    file_path = "#{Rails.application.class.module_parent_name.underscore}/#{Rails.env}/#{menu_item.class.to_s.underscore}/#{menu_item.category.id}/#{filename}"
     Rails.logger.info "File path: #{file_path}"
+
     file = directory.files.get(file_path)
     if file
       signed_url = file.url(Time.now + 3600) # URL valid for 1 hour

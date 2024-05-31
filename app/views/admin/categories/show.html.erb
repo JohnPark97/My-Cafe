@@ -1,9 +1,9 @@
 <h1><%= @category.name %></h1>
 
 <h2>Menus</h2>
-<% if @category.menus.any? %>
+<% if @category.menu_items.any? %>
   <ul>
-    <% @category.menus.each do |menu| %>
+    <% @category.menu_items.each do |menu| %>
       <li>
         <strong><%= menu.name %></strong>:
         <br>
