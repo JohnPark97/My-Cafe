@@ -62,13 +62,10 @@ jobs:
         run: docker load -i image.tar
 
       - name: Log in to Amazon ECR
-        uses: aws-actions/amazon-ecr-login@v1
-        env:
-          AWS_REGION: ${{ secrets.AWS_REGION }}
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
         with:
-            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#            mask-password: false
+          mask-password: false
 
       - name: Tag and push Docker image to Amazon ECR
         run: |
