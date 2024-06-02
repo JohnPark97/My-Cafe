@@ -25,7 +25,7 @@ jobs:
           echo "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}" >> $GITHUB_ENV
 
       - name: Build Docker image
-        run: docker-compose build
+        run: docker build --build-arg RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }} -t johnparkdev23/mycafe:latest .
         env:
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
@@ -34,7 +34,7 @@ jobs:
         run: docker save johnparkdev23/mycafe:latest -o image.tar
 
       - name: Upload to S3
-        run: aws s3 cp image.tar ${{ secrets.AWS_BUCKET_PATH }}/image.tar --region ${{ secrets.AWS_REGION }}
+        run: aws s3 cp image.tar s3://${{ secrets.AWS_BUCKET_PATH }}/image.tar --region ${{ secrets.AWS_REGION }}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
