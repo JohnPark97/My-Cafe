@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
 
   def set_tenant_schema
     if params[:cafe_id]
+      ActiveRecord::Base.connection.schema_search_path = 'public'
       cafe = Cafe.find(params[:cafe_id])
       ActiveRecord::Base.connection.schema_search_path = cafe.subdomain
     elsif request.subdomain.present?
