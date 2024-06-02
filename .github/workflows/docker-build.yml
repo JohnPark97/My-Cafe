@@ -3,10 +3,10 @@ name: Build and Push Docker Image
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   build:
@@ -30,14 +30,14 @@ jobs:
           echo "RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }}" >> $GITHUB_ENV
           echo "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}" >> $GITHUB_ENV
 
-      - name: Build and push Docker image
-        run: docker-compose -f docker-compose.yml build
+      - name: Build Docker image
+        run: docker-compose build
         env:
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
 
       - name: Push Docker image
-        run: docker-compose -f docker-compose.yml push
+        run: docker-compose push
         env:
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
