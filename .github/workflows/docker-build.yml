@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Build and Upload Docker Image to S3
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  build:
+  build-and-upload:
     runs-on: ubuntu-latest
 
     steps:
@@ -36,8 +36,13 @@ jobs:
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
 
-      - name: Push Docker image
-        run: docker-compose push
+      - name: Save Docker image as tar file
+        run: docker save johnparkdev23/mycafe:latest -o image.tar
+
+      - name: Upload to S3
+        run: |
+          aws s3 cp image.tar s3://your-s3-bucket/path/to/image.tar
         env:
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
