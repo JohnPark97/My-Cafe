@@ -45,3 +45,4 @@ jobs:
         with:
           repository: ${{ github.repository }}
           event-type: trigger-deploy
+          token: ${{ secrets.PAT }}
