@@ -23,8 +23,5 @@ class SwitchTenant
     end
 
     @app.call(env)
-  ensure
-    ActiveRecord::Base.connection.execute("SET search_path TO public")
-    Thread.current[:tenant] = nil
   end
 end
