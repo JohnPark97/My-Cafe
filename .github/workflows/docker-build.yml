@@ -45,5 +45,3 @@ jobs:
         with:
           repository: ${{ github.repository }}
           event-type: trigger-deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
