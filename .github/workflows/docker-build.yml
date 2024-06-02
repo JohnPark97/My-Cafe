@@ -66,6 +66,8 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
         with:
           mask-password: false
+        env:
+          AWS_REGION: ${{ secrets.AWS_REGION }}
 
       - name: Tag and push Docker image to Amazon ECR
         run: |
