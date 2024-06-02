@@ -1,24 +1,25 @@
 class ApplicationController < ActionController::Base
-  include S3Helper
-
-  # Ensure Devise modules are included
-  before_action :configure_permitted_parameters, if: :devise_controller?
-
-  # Parameter sanitization for Devise
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password, :remember_me])
-  end
+  before_action :set_tenant_schema
 
   def index
-    @categories = Category.includes(:menu_items).all
+    @cafes = Cafe.all
+  end
 
-    @signed_urls = {}
-    @categories.each do |category|
-      category.menu_items.each do |menu|
-        if menu.image_url.present?
-          @signed_urls[menu.id] = generate_signed_url(menu)
-        end
+  private
+
+  def set_tenant_schema
+    if params[:cafe_id]
+      cafe = Cafe.find(params[:cafe_id])
+      ActiveRecord::Base.connection.schema_search_path = cafe.subdomain
+    elsif request.subdomain.present?
+      cafe = Cafe.find_by(subdomain: request.subdomain)
+      if cafe
+        ActiveRecord::Base.connection.schema_search_path = cafe.subdomain
+      else
+        ActiveRecord::Base.connection.schema_search_path = 'public'
       end
+    else
+      ActiveRecord::Base.connection.schema_search_path = 'public'
     end
   end
 end

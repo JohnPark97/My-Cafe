@@ -1,0 +1,13 @@
+<h1><%= @menu_item.name %></h1>
+<p><%= @menu_item.description %></p>
+<p>Price: <%= number_to_currency(@menu_item.price) %></p>
+<p>Availability: <%= @menu_item.availability ? 'Available' : 'Not Available' %></p>
+<% if @menu_item.image_url.present? %>
+  <img src="<%= @menu_item.image_url %>" alt="<%= @menu_item.name %>">
+<% else %>
+  <p>No image available</p>
+<% end %>
+<br>
+
+<%= link_to 'Edit', edit_cafe_admin_menu_item_path(@cafe, @menu_item) %> |
+<%= link_to 'Back', cafe_admin_menu_items_path %>

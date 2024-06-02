@@ -1,9 +1,9 @@
 <h1><%= @category.name %></h1>
 
 <h2>Menus</h2>
-<% if @category.menu_items.any? %>
+<% if @menu_items.any? %>
   <ul>
-    <% @category.menu_items.each do |menu| %>
+    <% @menu_items.each do |menu| %>
       <li>
         <strong><%= menu.name %></strong>:
         <br>
@@ -20,5 +20,5 @@
   <p>No menus available for this category.</p>
 <% end %>
 
-<%= link_to 'Edit Category', edit_admin_category_path(@category) %> |
-<%= link_to 'Back to Categories', admin_categories_path %>
+<%= link_to 'Edit Category', edit_cafe_admin_category_path(@cafe, @category) %> |
+<%= link_to 'Back to Categories', cafe_admin_categories_path %>

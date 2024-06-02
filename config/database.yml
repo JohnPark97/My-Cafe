@@ -9,6 +9,10 @@ default: &default
 development:
   <<: *default
   database: myapp_development
+  username: postgres
+  password: password
+  host: localhost
+  port: 5432
 
 test:
   <<: *default

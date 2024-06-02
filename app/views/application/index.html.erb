@@ -1,45 +1,12 @@
 <header>
-  <h1>Welcome to Our Cozy Cafe</h1>
+  <h1>Welcome to Our Cafe Management System</h1>
 </header>
 
 <div class="container">
-  <h1>Menu</h1>
-  <div class="tabs">
-    <ul class="tab-links">
-      <% @categories.each_with_index do |category, index| %>
-        <li class="<%= 'active' if index == 0 %>">
-          <a href="#category-<%= category.id %>"><%= category.name %></a>
-        </li>
-      <% end %>
-    </ul>
-
-    <div class="tab-contents">
-      <% @categories.each_with_index do |category, index| %>
-        <div id="category-<%= category.id %>" class="tab-content <%= 'active' if index == 0 %>">
-          <ul>
-            <% category.menu_items.each do |menu| %>
-              <li>
-                <div class="menu-item">
-                  <% if menu.image_url.present? %>
-                    <img src="<%= menu.image_url %>" alt="<%= menu.name %>" class="menu-image">
-                  <% end %>
-                  <div class="menu-details">
-                    <strong><%= menu.name %></strong>: <%= menu.description %>
-                    <div>
-                      <%= number_to_currency(menu.price) %>
-                      <% if menu.availability %>
-                        <span class="available">(Available)</span>
-                      <% else %>
-                        <span class="not-available">(Not Available)</span>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <h1>Cafes</h1>
+  <ul>
+    <% @cafes.each do |cafe| %>
+      <li><%= link_to cafe.name, cafe_path(cafe) %></li>
+    <% end %>
+  </ul>
 </div>

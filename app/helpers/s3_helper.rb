@@ -16,7 +16,8 @@ module S3Helper
     # Extract filename from the image_url uploader
     filename = File.basename(menu_item.image_url.url)
 
-    file_path = "#{Rails.application.class.module_parent_name.underscore}/#{Rails.env}/#{menu_item.class.to_s.underscore}/#{menu_item.category.id}/#{filename}"
+    # Include the cafe's subdomain in the file path
+    file_path = "#{Rails.env}/#{menu_item.cafe.subdomain}/#{menu_item.class.to_s.underscore}/#{menu_item.category.id}/#{filename}"
     Rails.logger.info "File path: #{file_path}"
 
     file = directory.files.get(file_path)

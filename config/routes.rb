@@ -1,13 +1,15 @@
+# config/routes.rb
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { sessions: 'users/sessions' }
 
-  resources :category, only: [:index, :show]
-  resources :menus, only: [:index, :show]
-
-  namespace :admin do
-    get '/', to: 'dashboard#index', as: 'dashboard'
-    resources :categories
-    resources :menus
+  resources :cafes, only: [:show] do
+    resources :categories, only: [:index, :show]
+    resources :menu_items, only: [:index, :show]
+    namespace :admin do
+      resources :categories
+      resources :menu_items
+      get '/', to: 'dashboard#index', as: 'dashboard'
+    end
   end
 
   root 'application#index'

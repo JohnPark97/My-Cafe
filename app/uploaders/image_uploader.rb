@@ -1,9 +1,9 @@
-# uploaders/image_uploader.rb
 class ImageUploader < CarrierWave::Uploader::Base
   storage :fog
 
   def store_dir
-    "#{Rails.application.class.module_parent_name.underscore}/#{Rails.env}/#{model.class.to_s.underscore}/#{model.category.id}"
+    cafe_subdomain = model.cafe.subdomain
+    "#{cafe_subdomain}/#{Rails.env}/#{model.class.to_s.underscore}/#{model.category.id}"
   end
 
   def extension_whitelist

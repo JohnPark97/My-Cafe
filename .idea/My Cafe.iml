@@ -357,10 +357,15 @@
           </RakeTaskImpl>
           <RakeTaskImpl id="assets">
             <subtasks>
-              <RakeTaskImpl description="Remove old compiled assets" fullCommand="assets:clean[keep]" id="clean[keep]" />
-              <RakeTaskImpl description="Remove compiled assets" fullCommand="assets:clobber" id="clobber" />
-              <RakeTaskImpl description="Load asset compile environment" fullCommand="assets:environment" id="environment" />
-              <RakeTaskImpl description="Compile all the assets named in config.assets.precompile" fullCommand="assets:precompile" id="precompile" />
+              <RakeTaskImpl description="Removes old files in config.assets.output_path" fullCommand="assets:clean[count]" id="clean[count]" />
+              <RakeTaskImpl description="Remove config.assets.output_path" fullCommand="assets:clobber" id="clobber" />
+              <RakeTaskImpl description="Compile all the assets from config.assets.paths" fullCommand="assets:precompile" id="precompile" />
+              <RakeTaskImpl description="Print all the assets available in config.assets.paths" fullCommand="assets:reveal" id="reveal" />
+              <RakeTaskImpl id="reveal">
+                <subtasks>
+                  <RakeTaskImpl description="Print the full path of assets available in config.assets.paths" fullCommand="assets:reveal:full" id="full" />
+                </subtasks>
+              </RakeTaskImpl>
               <RakeTaskImpl description="" fullCommand="assets:clean" id="clean" />
             </subtasks>
           </RakeTaskImpl>
@@ -467,21 +472,6 @@
               <RakeTaskImpl description="" fullCommand="db:truncate_all" id="truncate_all" />
             </subtasks>
           </RakeTaskImpl>
-          <RakeTaskImpl id="javascript">
-            <subtasks>
-              <RakeTaskImpl description="Build your JavaScript bundle" fullCommand="javascript:build" id="build" />
-              <RakeTaskImpl description="Remove JavaScript builds" fullCommand="javascript:clobber" id="clobber" />
-              <RakeTaskImpl description="Install JavaScript dependencies" fullCommand="javascript:install" id="install" />
-              <RakeTaskImpl id="install">
-                <subtasks>
-                  <RakeTaskImpl description="Install Bun" fullCommand="javascript:install:bun" id="bun" />
-                  <RakeTaskImpl description="Install esbuild" fullCommand="javascript:install:esbuild" id="esbuild" />
-                  <RakeTaskImpl description="Install rollup.js" fullCommand="javascript:install:rollup" id="rollup" />
-                  <RakeTaskImpl description="Install Webpack" fullCommand="javascript:install:webpack" id="webpack" />
-                </subtasks>
-              </RakeTaskImpl>
-            </subtasks>
-          </RakeTaskImpl>
           <RakeTaskImpl id="log">
             <subtasks>
               <RakeTaskImpl description="Truncate all/specified *.log files in log/ to zero bytes (specify which logs with LOGS=test,development)" fullCommand="log:clear" id="clear" />
@@ -510,6 +500,7 @@
           <RakeTaskImpl id="test">
             <subtasks>
               <RakeTaskImpl description="Reset the database and run `bin/rails test`" fullCommand="test:db" id="db" />
+              <RakeTaskImpl description="Test S3 connection and retrieve coffee.jpeg" fullCommand="test:s3" id="s3" />
               <RakeTaskImpl description="" fullCommand="test:all" id="all" />
               <RakeTaskImpl description="" fullCommand="test:channels" id="channels" />
               <RakeTaskImpl description="" fullCommand="test:controllers" id="controllers" />
