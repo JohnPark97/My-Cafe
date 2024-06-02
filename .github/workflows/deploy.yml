@@ -1,8 +1,10 @@
 name: Deploy to AWS
 
 on:
-  repository_dispatch:
-    types: [trigger-deploy]
+  workflow_run:
+    workflows: ["Build and Upload Docker Image to S3"]
+    types:
+      - completed
 
 jobs:
   deploy:
