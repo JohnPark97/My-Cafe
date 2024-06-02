@@ -9,40 +9,41 @@ on:
       - master
 
 jobs:
-  build-and-upload:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
-      - name: Set up environment variables
-        run: |
-          echo "RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }}" >> $GITHUB_ENV
-          echo "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}" >> $GITHUB_ENV
-
-      - name: Build Docker image
-        run: docker-compose build
-        env:
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
-
-      - name: Save Docker image as tar file
-        run: docker save johnparkdev23/mycafe:latest -o image.tar
-
-      - name: Upload to S3
-        run: aws s3 cp image.tar ${{ secrets.AWS_BUCKET_PATH }}/image.tar --region ${{ secrets.AWS_REGION }}
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
+#  build-and-upload:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v2
+#
+#      - name: Set up Docker Buildx
+#        uses: docker/setup-buildx-action@v2
+#
+#      - name: Set up environment variables
+#        run: |
+#          echo "RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }}" >> $GITHUB_ENV
+#          echo "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}" >> $GITHUB_ENV
+#
+#      - name: Build Docker image
+#        run: docker-compose build
+#        env:
+#          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+#          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+#
+#      - name: Save Docker image as tar file
+#        run: docker save johnparkdev23/mycafe:latest -o image.tar
+#
+#      - name: Upload to S3
+#        run: aws s3 cp image.tar ${{ secrets.AWS_BUCKET_PATH }}/image.tar --region ${{ secrets.AWS_REGION }}
+#        env:
+#          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#          AWS_REGION: ${{ secrets.AWS_REGION }}
 
 
 
   deploy:
+    needs: build-and-upload
     runs-on: ubuntu-latest
 
     steps:
@@ -64,6 +65,10 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
         env:
           AWS_REGION: ${{ secrets.AWS_REGION }}
+        with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#            mask-password: false
 
       - name: Tag and push Docker image to Amazon ECR
         run: |
