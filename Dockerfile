@@ -58,9 +58,17 @@ COPY --from=build /rails /rails
 COPY ./bin/docker-entrypoint /usr/local/bin/docker-entrypoint
 RUN chmod +x /usr/local/bin/docker-entrypoint
 
-# Run and own only the runtime files as a non-root user for security
+# Create and set permissions for required directories
+RUN mkdir -p /rails/public/assets && \
+    mkdir -p /rails/tmp && \
+    mkdir -p /rails/log && \
+    mkdir -p /rails/storage && \
+    chown -R rails:rails /rails/public/assets /rails/tmp /rails/log /rails/storage && \
+    chmod -R 775 /rails/public/assets /rails/tmp /rails/log /rails/storage
+
+# Switch to the non-root user
 RUN useradd rails --create-home --shell /bin/bash && \
-    chown -R rails:rails db log storage tmp
+    chown -R rails:rails /rails
 USER rails:rails
 
 # Entrypoint prepares the database.
