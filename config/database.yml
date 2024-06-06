@@ -20,6 +20,7 @@ test:
 
 production:
   <<: *default
-  database: myapp_production
-  username: myapp
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  database: mycafe_prod
+  username: <%= ENV['DATABASE_USERNAME'] || 'postgres' %>
+  password: <%= ENV['DATABASE_PASSWORD'] || 'password!' %>
+  host: <%= ENV['DATABASE_HOST'] %>
