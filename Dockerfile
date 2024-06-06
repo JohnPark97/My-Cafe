@@ -3,6 +3,9 @@
 ARG RUBY_VERSION=3.3.1
 FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 
+# Create a non-root user and group
+RUN addgroup --system rails && adduser --system --ingroup rails rails
+
 # Rails app lives here
 WORKDIR /rails
 
@@ -54,10 +57,6 @@ RUN apt-get update -qq && \
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
-# Copy entrypoint script and set permissions
-COPY ./bin/docker-entrypoint /usr/local/bin/docker-entrypoint
-RUN chmod +x /usr/local/bin/docker-entrypoint
-
 # Create and set permissions for required directories
 RUN mkdir -p /rails/public/assets && \
     mkdir -p /rails/tmp && \
@@ -66,9 +65,10 @@ RUN mkdir -p /rails/public/assets && \
     chown -R rails:rails /rails/public/assets /rails/tmp /rails/log /rails/storage && \
     chmod -R 775 /rails/public/assets /rails/tmp /rails/log /rails/storage
 
+# Set permissions for the entire application directory
+RUN chown -R rails:rails /rails
+
 # Switch to the non-root user
-RUN useradd rails --create-home --shell /bin/bash && \
-    chown -R rails:rails /rails
 USER rails:rails
 
 # Entrypoint prepares the database.
