@@ -5,10 +5,10 @@ set -e
 rm -f /rails/tmp/pids/server.pid
 
 # Ensure the master key is in place
-if [ ! -f /rails/config/master.key ]; then
-  echo "Master key is missing, copying from secret..."
-  cp /run/secrets/master_key /rails/config/master.key
-fi
+#if [ ! -f /rails/config/master.key ]; then
+#  echo "Master key is missing, copying from secret..."
+#  cp /run/secrets/master_key /rails/config/master.key
+#fi
 
 # Setup database
 echo "Running database setup..."
