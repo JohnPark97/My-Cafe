@@ -85,7 +85,7 @@ jobs:
 
       - name: Deploy to Amazon ECS
         run: |
-          aws ecs update-service --cluster my-cluster --service mycafe-service --force-new-deployment
+          aws ecs update-service --cluster MyCafeCluster2 --service mycafeService2 --force-new-deployment
         env:
           AWS_REGION: ${{ secrets.AWS_REGION }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
